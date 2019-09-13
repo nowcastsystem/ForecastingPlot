@@ -4,7 +4,7 @@ import pandas as pd
 import dash_core_components as dcc
 import dash
 import dash_html_components as html
-from QUANTAXIS.QAUtil import QASETTING
+#from QUANTAXIS.QAUtil import QASETTING
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
