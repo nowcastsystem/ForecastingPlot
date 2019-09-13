@@ -24,20 +24,20 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 # outcome.set_index('datetime', inplace=True)
 # data = outcome
 
-data = pd.read_csv('ForecastingPlot/prediction.csv',
+data = pd.read_csv('./prediction.csv',
                    index_col=0)
 
 
 prediction = go.Scatter(
     x=data.index,
-    y=data['predict'],
+    y=data['prediction'],
     name="Predicted Value",
     line=dict(color='#17BECF'),
     opacity=0.8)
 
 actualtraffic = go.Scatter(
     x=data.index,
-    y=data['y'],
+    y=data['outcome'],
     name="Actual Value",
     line=dict(color='#7F7F7F'),
     opacity=0.8)
