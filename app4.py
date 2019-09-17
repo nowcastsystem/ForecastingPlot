@@ -1,4 +1,3 @@
-
 import plotly.graph_objs as go
 import pandas as pd
 
@@ -16,14 +15,20 @@ myclient = QASETTING.client
 database = myclient.mydatabase
 col = database.prediction
 x = col.find()
+
 outcome = pd.DataFrame(list(x))
-outcome = outcome.drop(columns = '_id')
+if not outcome.empty:
+    outcome = outcome.drop(columns = '_id')
+
 outcome['datetime'] = pd.to_datetime(outcome['datetime'])
 outcome.set_index('datetime', inplace=True)
 data = outcome
 
+
 # data = pd.read_csv('./prediction.csv',
 #                    index_col=0)
+
+
 
 
 prediction = go.Scatter(
@@ -87,5 +92,3 @@ app.layout = html.Div(children=[
 
 if __name__ == '__main__':
     app.run_server(host='127.0.0.1', port=808, debug=True)
-
-
