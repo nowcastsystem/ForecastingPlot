@@ -16,28 +16,31 @@ database = myclient.mydatabase
 col = database.prediction
 x = col.find()
 
-
 outcome = pd.DataFrame(list(x))
 if not outcome.empty:
     outcome = outcome.drop(columns = '_id')
+
 outcome['datetime'] = pd.to_datetime(outcome['datetime'])
 outcome.set_index('datetime', inplace=True)
 data = outcome
 
-data = pd.read_csv('./prediction.csv',
-                   index_col=0)
+
+# data = pd.read_csv('./prediction.csv',
+#                    index_col=0)
+
+
 
 
 prediction = go.Scatter(
     x=data.index,
-    y=data['prediction'],
+    y=data['predict'],
     name="Predicted Value",
     line=dict(color='#17BECF'),
     opacity=0.8)
 
 actualtraffic = go.Scatter(
     x=data.index,
-    y=data['outcome'],
+    y=data['y'],
     name="Actual Value",
     line=dict(color='#7F7F7F'),
     opacity=0.8)
