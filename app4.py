@@ -4,25 +4,25 @@ import pandas as pd
 import dash_core_components as dcc
 import dash
 import dash_html_components as html
-#from QUANTAXIS.QAUtil import QASETTING
+from QUANTAXIS.QAUtil import QASETTING
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-# myclient = QASETTING.client
-# database = myclient.mydatabase
-# col = database.prediction
-# x = col.find()
-#
-#
-# outcome = pd.DataFrame(list(x))
-# if not outcome.empty:
-#     outcome = outcome.drop(columns = '_id')
-# outcome['datetime'] = pd.to_datetime(outcome['datetime'])
-# outcome.set_index('datetime', inplace=True)
-# data = outcome
+myclient = QASETTING.client
+database = myclient.mydatabase
+col = database.prediction
+x = col.find()
+
+
+outcome = pd.DataFrame(list(x))
+if not outcome.empty:
+    outcome = outcome.drop(columns = '_id')
+outcome['datetime'] = pd.to_datetime(outcome['datetime'])
+outcome.set_index('datetime', inplace=True)
+data = outcome
 
 data = pd.read_csv('./prediction.csv',
                    index_col=0)
